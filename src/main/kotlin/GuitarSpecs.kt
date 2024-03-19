@@ -9,6 +9,7 @@ class GuitarSpecs(
     private val type: Type,
     private val backWood: Wood,
     private val topWood: Wood) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -22,5 +23,11 @@ class GuitarSpecs(
 
         return true
     }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
+
+
 
 }
