@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 
 class GuitarInventoryTest {
     @Test
-    fun `Inventory has all the Guitars List`(){
+    fun `Inventory has all the list of Guitars`(){
 
         val guitarspecs = GuitarSpecs(Builder.FENDER, Type.ELECTRIC, Wood.CEDAR, Wood.ALDER)
         val guitar = Guitar(1, 100, "New", guitarspecs)
@@ -28,7 +28,9 @@ class GuitarInventoryTest {
         val guitarInventory = GuitarInventory()
         guitarInventory.add(guitar)
 
-        val guitars : List<Guitar> = guitarInventory.findGuitars(guitarSpecs)
+
+        val requiredSpecs = GuitarSpecs(Builder.FENDER, Type.ELECTRIC, Wood.CEDAR, Wood.ALDER)
+        val guitars = guitarInventory.search(requiredSpecs)
 
         assertEquals(1, guitars[0].serialNumber)
     }

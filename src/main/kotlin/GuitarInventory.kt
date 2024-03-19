@@ -8,7 +8,7 @@ class GuitarInventory {
         guitars.add(guitar)
     }
 
-    fun findGuitars(guitarSpecs: GuitarSpecs): List<Guitar> {
-        return guitars.filter { it.specs == guitarSpecs }
+    fun search(guitarSpecs: GuitarSpecs): List<Guitar> {
+        return guitars.filter { it.specs.equals(guitarSpecs) }
     }
 }

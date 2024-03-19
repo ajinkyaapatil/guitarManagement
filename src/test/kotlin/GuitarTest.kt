@@ -22,7 +22,7 @@ class GuitarTest {
 
         assertEquals(1, guitar.serialNumber)
         assertEquals(100, guitar.price)
-        assertEquals(guitarspecs.type, guitar.specs.type)
+        assertEquals(guitarspecs, guitar.specs)
         assertEquals("New", guitar.model)
     }
 }
