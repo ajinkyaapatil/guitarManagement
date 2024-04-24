@@ -24,6 +24,16 @@ class InventoryTest {
     }
 
     @Test
+    fun `should add an instrument to the instruments list when adding an instruments`(){
+        val specs = InstrumentSpecs(properties)
+
+        inventory.addInstrument(1, 1000.0, specs)
+
+        val actualInstrumentList = inventory.search(specs)
+
+        assertEquals(1, actualInstrumentList.size)
+    }
+    @Test
     fun `should return a list of instruments when provided with specs`() {
 
         val specs = InstrumentSpecs(properties)
@@ -38,7 +48,7 @@ class InventoryTest {
     }
 
     @Test
-    fun `should return a instrument when provided with the serial Number`() {
+    fun `should return an instrument when provided with the serial Number`() {
 
         val specs = InstrumentSpecs(properties)
 
@@ -53,13 +63,17 @@ class InventoryTest {
 
 
     @Test
-    fun `should return an empty list when provided a unavailable guitar specification`() {
+    fun `should return an empty list when provided an unavailable instrument properties`() {
 
         val specs = InstrumentSpecs(properties)
 
         inventory.addInstrument(1, 1000.0, specs)
 
-        val requiredSpecs = InstrumentSpecs(properties)
+        val requiredProperties : MutableMap<String, Any> = mutableMapOf(
+            "instrumentType" to InstrumentType.MANDOLIN,
+        )
+
+        val requiredSpecs = InstrumentSpecs(requiredProperties)
 
         val actualInstrumentList = inventory.search(requiredSpecs)
 
@@ -67,7 +81,23 @@ class InventoryTest {
 
     }
 
+    @Test
+    fun `should return a list of instruments when provided with less number of properties`(){
+        val specs = InstrumentSpecs(properties)
 
+        inventory.addInstrument(1, 1000.0, specs)
+
+        val requiredProperties : MutableMap<String, Any> = mutableMapOf(
+            "instrumentType" to InstrumentType.GUITAR,
+        )
+
+        val requiredSpecs = InstrumentSpecs(requiredProperties)
+
+        val actualInstrumentList = inventory.search(requiredSpecs)
+
+        assertEquals(1, actualInstrumentList.size)
+
+    }
 
 
 
